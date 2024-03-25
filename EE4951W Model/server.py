@@ -2,19 +2,26 @@
 
 from sys import argv
 from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask_cors import CORS, cross_origin
 from model_api import *
 
 
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 @app.route("/")
 def blankPage():
+  
     return ("running")
 
 @app.route("/api/queryModel", methods=["POST"])
-def queryModel(data):
+@cross_origin(supports_credentials=True)
+def queryModel():
   
-  summary = callLarge(data)
-
+  input_data = request.get_json()
+  
+  
+  summary = callLarge(input_data['model'])
+  
   return summary
 
 

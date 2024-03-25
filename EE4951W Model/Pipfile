@@ -8,6 +8,7 @@ transformers = "*"
 torch = "*"
 flask = "*"
 pipeline = "*"
+flask-cors = "*"
 
 [dev-packages]
 

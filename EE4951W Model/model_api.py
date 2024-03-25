@@ -34,3 +34,6 @@ def callLarge(input_text):
         total_summary.append(summarypiece[0]['summary_text'])
 
     print(total_summary)
+    return total_summary
+    
+    
