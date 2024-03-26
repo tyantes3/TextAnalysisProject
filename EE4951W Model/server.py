@@ -19,6 +19,7 @@ def queryModel():
   
   input_data = request.get_json()  
   summary = callLarge(input_data['model'])
+  print(summary)
   return summary
 
 

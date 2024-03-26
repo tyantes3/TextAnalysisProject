@@ -1,0 +1,23 @@
+.button {
+    background-color: transparent;
+    color: #2196F3; /* Equivalent to Tailwind blue-700 */
+    font-weight: 600; /* Equivalent to Tailwind font-semibold */
+    padding: 0.5rem 1rem; /* Equivalent to Tailwind py-2 px-4 */
+    border: 1px solid #2196F3; /* Equivalent to Tailwind border-blue-500 */
+    border-radius: 0.25rem; /* Equivalent to Tailwind rounded */
+    margin: 1rem;
+  }
+  
+  .button:hover {
+    background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
+    color: #ffffff; /* Equivalent to Tailwind hover:text-white */
+    border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
+  }
+
+  .Speech {
+    text-align: center;
+  }
+
+  .Mic {
+    color: white;
+  }
