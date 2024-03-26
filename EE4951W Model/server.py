@@ -17,11 +17,8 @@ def blankPage():
 @cross_origin(supports_credentials=True)
 def queryModel():
   
-  input_data = request.get_json()
-  
-  
+  input_data = request.get_json()  
   summary = callLarge(input_data['model'])
-  
   return summary
 
 

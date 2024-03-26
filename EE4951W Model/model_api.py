@@ -21,19 +21,15 @@ def callLarge(input_text):
     if current_chunk:
         chunks.append(' '.join(current_chunk))
 
-    # Print the chunks
-    #for i, chunk in enumerate(chunks, start=1):
-        #print(f"Chunk {i}:")
-        #print(chunk)
-        #print()
+    
 
     total_summary = []
     for piece in chunks:
-    #print(piece)
+    
         summarypiece = summarizer(piece, max_length=150, min_length=30, do_sample=False)
         total_summary.append(summarypiece[0]['summary_text'])
-
     print(total_summary)
+    
     return total_summary
     
     
