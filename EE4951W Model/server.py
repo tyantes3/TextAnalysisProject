@@ -1,7 +1,7 @@
 
 
 from sys import argv
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, flash, redirect, render_template, request, session, abort, jsonify
 from flask_cors import CORS, cross_origin
 from model_api import *
 
@@ -20,7 +20,8 @@ def queryModel():
   input_data = request.get_json()  
   summary = callLarge(input_data['model'])
   print(summary)
-  return summary
+  # return summary
+  return jsonify({"summary": summary})
 
 
 

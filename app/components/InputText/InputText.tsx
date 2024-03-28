@@ -1,55 +1,47 @@
 "use client";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styles from "./InputText.module.css";
+
 export default function InputText() {
   const [modelStatus, setModelStatus] = useState("");
+  const [summary, setSummary] = useState(""); // State variable to store summary
 
-  // var input_text = document.querySelector("form");
-  // input_text?.addEventListener("submit",async (e)=>{
-  //   e.preventDefault()
-  //   let text = modelStatus
-  //   let bodyData = {
-  //     "text":text
-  //   }
-  //   const summary = await fetch("https://localhost:5000/api/queryModel")
-
-  // })
-
-  function handleChange(event) {
-    setModelStatus(event.target.value);
-    console.log(event.target.value);
-  }
   async function queryModel(event) {
     event.preventDefault();
     let data = JSON.stringify({ model: modelStatus });
-    console.log(data);
-    let summary = await fetch("http://127.0.0.1:5000/api/queryModel", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      mode: "cors",
-      body: data,
-    });
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/api/queryModel", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        mode: "cors",
+        body: data,
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch");
+      }
+
+      const responseData = await response.json(); // Parse JSON response
+      setSummary(responseData.summary); // Set the summary in state
+      console.log(summary);
+    } catch (error) {
+      console.error("Error:", error);
+      setSummary("Failed to fetch summary");
+    }
   }
 
-  // useEffect(()=>{
-  //     let pleaseWord = document.getElementById("model_text")
-  //     console.log(pleaseWord)
-  //   const fetchModelOutput = async() =>{
-  //     var input_text = document.querySelector("form")
-
-  //     console.log(input_text)
-  //   }
-
-  // },[modelStatus]);
+  function handleChange(event) {
+    setModelStatus(event.target.value);
+  }
 
   return (
     <div className={styles.Input}>
       <form id="query" method="POST" onSubmit={queryModel}>
         <input
           onChange={handleChange}
-          // className="text-white"
           className={styles.text}
           type="text"
           name="model_text"
@@ -60,6 +52,7 @@ export default function InputText() {
           Summarize
         </button>
       </form>
+      <p>{summary}</p> {/* Display summary here */}
     </div>
   );
 }
