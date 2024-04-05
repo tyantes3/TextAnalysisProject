@@ -2,7 +2,8 @@
     color: white;
     /* margin-left: 50%;
     margin-right: auto; */
-    margin-left: 28.5rem;
+    margin-left: 20%;
+    margin-right: auto;
     padding-top: 1rem;
     width: 70%;
 }
@@ -27,4 +28,20 @@
     background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
     color: #ffffff; /* Equivalent to Tailwind hover:text-white */
     border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
+  }
+
+  .summary{
+    color: white;
+    align-content: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+  }
+
+  .select{
+    background-color: #333333;
+    margin-left: 1rem;
+    color: #2196F3;
+    border-color: #2196F3;
+    border: 1px solid #2196F3;
+    padding: 0.5rem 1rem;
   }
