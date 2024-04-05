@@ -17,8 +17,12 @@ def blankPage():
 @cross_origin(supports_credentials=True)
 def queryModel():
   
-  input_data = request.get_json()  
-  summary = callLarge(input_data['model'])
+  input_data = request.get_json()
+  print(input_data)
+  print(input_data['modelInputType'])
+  print(input_data['modelSelector'])  
+  
+  summary = callLarge(input_data['model'], input_data['modelInputType'], input_data['modelSelector'])
   print(summary)
   # return summary
   return jsonify({"summary": summary})

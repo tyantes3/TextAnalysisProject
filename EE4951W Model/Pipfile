@@ -9,6 +9,9 @@ torch = "*"
 flask = "*"
 pipeline = "*"
 flask-cors = "*"
+beautifulsoup4 = "*"
+requests = "*"
+pypdf2 = "*"
 
 [dev-packages]
 
