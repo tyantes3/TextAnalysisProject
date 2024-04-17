@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import styles from "./InputText.module.css";
+import "regenerator-runtime/runtime";
 import SpeechRecognition, {
   useSpeechRecognition,
 } from "react-speech-recognition";
