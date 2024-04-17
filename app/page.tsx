@@ -9,7 +9,6 @@ export default function Page() {
     <div>
       <NavBar />
       <InputText />
-      <SpeechToText />
     </div>
   );
 }

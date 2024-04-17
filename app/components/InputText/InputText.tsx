@@ -1,6 +1,10 @@
 "use client";
 import { useState } from "react";
 import styles from "./InputText.module.css";
+import SpeechRecognition, {
+  useSpeechRecognition,
+} from "react-speech-recognition";
+import speechStyles from "./SpeechToText.module.css";
 
 export default function InputText() {
   const [modelStatus, setModelStatus] = useState("");
@@ -10,8 +14,11 @@ export default function InputText() {
 
   async function queryModel(event) {
     event.preventDefault();
+    const finalModelStatus =
+      transcript.trim() !== "" ? transcript : modelStatus;
+
     let data = JSON.stringify({
-      model: modelStatus,
+      model: finalModelStatus,
       modelInputType: inputType,
       modelSelector: modelType,
     });
@@ -53,6 +60,17 @@ export default function InputText() {
     console.log(modelType);
   }
 
+  const {
+    transcript,
+    listening,
+    resetTranscript,
+    browserSupportsSpeechRecognition,
+  } = useSpeechRecognition();
+
+  if (!browserSupportsSpeechRecognition) {
+    return <span>Browser Doesn't support speech to text</span>;
+  }
+
   return (
     <div className={styles.Input}>
       <form id="query" method="POST" onSubmit={queryModel}>
@@ -85,6 +103,28 @@ export default function InputText() {
         </button>
       </form>
       <p className={styles.summary}>{summary}</p> {/* Display summary here */}
+      <div className={speechStyles.Speech}>
+        <p className={speechStyles.Mic}>
+          Microphone:{" "}
+          {listening ? "Currently Listening" : "Currently Not Listening"}
+        </p>
+        <button
+          className={speechStyles.button}
+          onClick={() => SpeechRecognition.startListening({ continuous: true })}
+        >
+          Start
+        </button>
+        <button
+          className={speechStyles.button}
+          onClick={SpeechRecognition.stopListening}
+        >
+          Stop
+        </button>
+        <button className={speechStyles.button} onClick={resetTranscript}>
+          Reset
+        </button>
+        <p className={speechStyles.Mic}>{transcript}</p>
+      </div>
     </div>
   );
 }
