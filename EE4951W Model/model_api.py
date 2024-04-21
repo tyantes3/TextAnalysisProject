@@ -5,8 +5,12 @@ import requests
 from bs4 import BeautifulSoup
 import PyPDF2
 import io
+# import en_core_web_sm
+import spacy
+from spacy import displacy
+from flask import Flask, request, jsonify
 
-def callLarge(input_text, input_type, model_type):
+def callLarge(input_text, input_type, model_type, NER):
     if input_type == "urlInput":
         print("In url parse function")
         url = input_text
@@ -53,7 +57,44 @@ def callLarge(input_text, input_type, model_type):
         print("article")
         print(article)        
         input_text = article
-
+    if NER:
+        print("Using NER")
+        nlp = spacy.load('en_core_web_sm')
+        doc= nlp(input_text)
+        entities = {
+            "people": set(),
+            "fac": set(),
+            "date": set(),
+            "gpe": set()
+        }
+        
+        for ent in doc.ents:
+            if ent.label_ == "PERSON" and ent.text not in entities["people"]:
+                if "’s" not in ent.text and "'s" not in ent.text:
+                    entities["people"].add(ent.text)
+            elif ent.label_ == "FAC" and ent.text not in entities["fac"]:
+                if "’s" not in ent.text and "'s" not in ent.text:
+                    entities["fac"].add(ent.text)
+            elif ent.label_ == "DATE" and ent.text not in entities["date"]:
+                if "’s" not in ent.text and "'s" not in ent.text:
+                    entities["date"].add(ent.text)
+            elif ent.label_ == "GPE" and ent.text not in entities["gpe"]:
+                if "’s" not in ent.text and "'s" not in ent.text:
+                    entities["gpe"].add(ent.text)
+        
+        # Generate HTML markup for visualization
+        people_list = list(entities["people"])
+        fac_list = list(entities["fac"])
+        date_list = list(entities["date"])
+        gpe_list = list(entities["gpe"])
+                
+        # Return the entities and HTML markup as JSON
+        # return {"people": people_list, "fac": fac_list, "date": date_list, "gpe": gpe_list}
+    else:
+        people_list = []
+        fac_list = []
+        date_list = []
+        gpe_list = []
     if model_type == "Faster":
         summarizer = pipeline("summarization", model="Falconsai/text_summarization")
         print("using fast model")
@@ -85,6 +126,6 @@ def callLarge(input_text, input_type, model_type):
         total_summary.append(summarypiece[0]['summary_text'])
     print(total_summary)
     
-    return total_summary
+    return {"summary": total_summary, "people": people_list, "fac": fac_list, "date": date_list, "gpe": gpe_list}
     
     

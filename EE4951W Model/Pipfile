@@ -12,6 +12,8 @@ flask-cors = "*"
 beautifulsoup4 = "*"
 requests = "*"
 pypdf2 = "*"
+spacy = "*"
+ipython = "*"
 
 [dev-packages]
 

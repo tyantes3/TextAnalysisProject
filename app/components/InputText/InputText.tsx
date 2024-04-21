@@ -12,9 +12,23 @@ export default function InputText() {
   const [summary, setSummary] = useState(""); // State variable to store summary
   const [inputType, setInputType] = useState("textInput");
   const [modelType, setModelType] = useState("Faster");
+  const [NERpeople, setNERpeople] = useState("");
+  const [NERfac, setNERfac] = useState("");
+  const [NERdates, setNERdates] = useState("");
+  const [NERgpe, setNERgpe] = useState("");
+  const [NERStatus, setNER] = useState(false);
+
+  const handleCheckboxChange = () => {
+    setNER((prevState) => !prevState);
+  };
 
   async function queryModel(event) {
     event.preventDefault();
+    setSummary("Loading...");
+    setNERpeople(""); // Join array elements with a comma and space
+    setNERfac(""); // Join array elements with a comma and space
+    setNERdates(""); // Join array elements with a comma and space
+    setNERgpe("");
     const finalModelStatus =
       transcript.trim() !== "" ? transcript : modelStatus;
 
@@ -22,6 +36,7 @@ export default function InputText() {
       model: finalModelStatus,
       modelInputType: inputType,
       modelSelector: modelType,
+      NER: NERStatus,
     });
 
     try {
@@ -39,7 +54,16 @@ export default function InputText() {
       }
 
       const responseData = await response.json(); // Parse JSON response
-      setSummary(responseData.summary); // Set the summary in state
+      if (NERStatus) {
+        setNERpeople("People: " + responseData["People"].join(", ")); // Join array elements with a comma and space
+        setNERfac("Facilities: " + responseData["Facilities"].join(", ")); // Join array elements with a comma and space
+        setNERdates("Dates: " + responseData["Dates"].join(", ")); // Join array elements with a comma and space
+        setNERgpe(
+          "Geopolitical Entities: " +
+            responseData["Geopolitical Entities"].join(", ")
+        );
+      }
+      setSummary("Summary: " + responseData["Summary"]);
       console.log(summary);
     } catch (error) {
       console.error("Error:", error);
@@ -90,6 +114,7 @@ export default function InputText() {
         >
           <option value="textInput">Text Input</option>
           <option value="urlInput">URL Input</option>
+          <option value="textInput">Speech Input</option>
         </select>
         <select
           value={modelType}
@@ -102,8 +127,21 @@ export default function InputText() {
         <button type="submit" id="submitQuery" className={styles.button}>
           Summarize
         </button>
+        <label>
+          <input
+            type="checkbox"
+            name="enableOptions"
+            checked={NERStatus}
+            onChange={handleCheckboxChange}
+          />
+          Named Entity Recognition
+        </label>
       </form>
-      <p className={styles.summary}>{summary}</p> {/* Display summary here */}
+      <p className={styles.summary}>{summary}</p>
+      <p className={styles.summary}>{NERpeople}</p>
+      <p className={styles.summary}>{NERdates}</p>
+      <p className={styles.summary}>{NERfac}</p>
+      <p className={styles.summary}>{NERgpe}</p>
       <div className={speechStyles.Speech}>
         <p className={speechStyles.Mic}>
           Microphone:{" "}
