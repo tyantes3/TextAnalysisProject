@@ -1,3 +1,8 @@
+## Running the code
+First cd into the root directory of the web application(/EE4951W-Final-Project) and then run an npm install
+Next cd into the /EE4951W Model directory and run pipenv shell, once the virtual environment is setup run a pipenv install
+Finally have two terminals open, the first in the root directory and run: npm run dev. In the second terminal navigate to the EE4951 Model directory and run: python3.11 -m pipenv run flask --app server.py  run --debug. (if on macos or linux you probably won't need the python3.11 -m to run this second command)
+
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 ## Getting Started
