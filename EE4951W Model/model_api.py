@@ -1,6 +1,5 @@
 
 from transformers import BartTokenizer, BartForConditionalGeneration, pipeline
-import torch
 import requests
 from bs4 import BeautifulSoup
 import PyPDF2
