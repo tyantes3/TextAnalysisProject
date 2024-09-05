@@ -13,6 +13,7 @@ requests = "*"
 pypdf2 = "*"
 spacy = "*"
 ipython = "*"
+gunicorn = "*"
 
 [dev-packages]
 
