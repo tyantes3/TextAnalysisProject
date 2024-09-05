@@ -17,13 +17,18 @@ export default function InputText() {
   const [NERdates, setNERdates] = useState("");
   const [NERgpe, setNERgpe] = useState("");
   const [NERStatus, setNER] = useState(false);
+  const [isSummary, setIsSummary] = useState(false)
 
   const handleCheckboxChange = () => {
     setNER((prevState) => !prevState);
   };
 
+  const nerButtonState = NERStatus ? styles.activeNerButton : styles.nerButton;
+  const summaryStatus = isSummary ? styles.sumContainer : styles.hiddenSumContainer;
+
   async function queryModel(event) {
     event.preventDefault();
+    setIsSummary(true);
     setSummary("Loading...");
     setNERpeople(""); // Join array elements with a comma and space
     setNERfac(""); // Join array elements with a comma and space
@@ -65,6 +70,7 @@ export default function InputText() {
       }
       setSummary("Summary: " + responseData["Summary"]);
       console.log(summary);
+      
     } catch (error) {
       console.error("Error:", error);
       setSummary("Failed to fetch summary");
@@ -92,12 +98,13 @@ export default function InputText() {
     browserSupportsSpeechRecognition,
   } = useSpeechRecognition();
 
-  if (!browserSupportsSpeechRecognition) {
-    return <span>Browser Doesn't support speech to text</span>;
-  }
+  // if (!browserSupportsSpeechRecognition) {
+  //   return <span>Browser Doesn't support speech to text</span>;
+  // }
 
   return (
     <div className={styles.Input}>
+      <p className={styles.inputTitle}>Enter Your Text or URL Here!</p>
       <form id="query" method="POST" onSubmit={queryModel}>
         <input
           onChange={handleChange}
@@ -107,41 +114,48 @@ export default function InputText() {
           id="model_text"
           value={modelStatus}
         ></input>
-        <select
-          value={inputType}
-          onChange={handleInputChange}
-          className={styles.select}
-        >
-          <option value="textInput">Text Input</option>
-          <option value="urlInput">URL Input</option>
-          <option value="textInput">Speech Input</option>
-        </select>
-        <select
-          value={modelType}
-          onChange={handleModelChange}
-          className={styles.select}
-        >
-          <option value="Faster">Faster Response</option>
-          <option value="Accurate">More Accurate Response</option>
-        </select>
-        <button type="submit" id="submitQuery" className={styles.button}>
-          Summarize
-        </button>
-        <label>
-          <input
-            type="checkbox"
-            name="enableOptions"
-            checked={NERStatus}
-            onChange={handleCheckboxChange}
-          />
-          Named Entity Recognition
-        </label>
+        <div className={styles.buttonsContainer}>
+          <select
+            value={inputType}
+            onChange={handleInputChange}
+            className={styles.select}
+          >
+            <option value="textInput">Text Input</option>
+            <option value="urlInput">URL Input</option>
+            <option value="textInput">Speech Input</option>
+          </select>
+          <select
+            value={modelType}
+            onChange={handleModelChange}
+            className={styles.select}
+          >
+            <option value="Faster">Faster Response</option>
+            <option value="Accurate">More Accurate Response</option>
+          </select>
+
+          <button
+              type="button"
+              name="enableOptions"
+              onClick={handleCheckboxChange}
+              className={nerButtonState}
+              // onChange={handleCheckboxChange}
+            >
+            Named Entity Recognition
+          </button>
+
+          <button type="submit" id="submitQuery" className={styles.button}>
+            Summarize
+          </button>
+
+        </div>
       </form>
-      <p className={styles.summary}>{summary}</p>
-      <p className={styles.summary}>{NERpeople}</p>
-      <p className={styles.summary}>{NERdates}</p>
-      <p className={styles.summary}>{NERfac}</p>
-      <p className={styles.summary}>{NERgpe}</p>
+      <div className={summaryStatus}>
+        <p className={styles.summary}>{summary}</p>
+        <p className={styles.summary}>{NERpeople}</p>
+        <p className={styles.summary}>{NERdates}</p>
+        <p className={styles.summary}>{NERfac}</p>
+        <p className={styles.summary}>{NERgpe}</p>
+      </div>
       <div className={speechStyles.Speech}>
         <p className={speechStyles.Mic}>
           Microphone:{" "}

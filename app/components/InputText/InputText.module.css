@@ -1,53 +1,137 @@
 .Input{
-    color: white;
-    /* margin-left: 50%;
-    margin-right: auto; */
-    align-content: center;
-    margin-left: auto;
-    margin-right: auto;
-    padding-top: 1rem;
-    width: 100%;
-    overflow-x: hidden;
+  color: white;
+  /* margin-left: 50%;
+  margin-right: auto; */
+  align-content: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 1rem;
+  width: 100%;
+  overflow-x: hidden;
 }
 
-.text{
-    color: black;
-    width: 45%;
-    height: 2rem;
-    margin-left: 3%;
+/* .text{
+  color: black;
+  width: 45%;
+  height: 2rem;
+  margin-left: 3%;
+} */
+
+.text {
+width: 80%;
+padding: 12px 15px;
+border: 1px solid #ddd;
+border-radius: 8px;
+font-size: 18px;
+color: #444;
+background: linear-gradient(135deg, #ffffff 0%, #f0f0f0 100%);
+box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease-in-out;
+margin-left: 10%;
+margin-right: 10%;
+margin-top: 15px;
+}
+
+.inputTitle{
+width: 30%;
+margin-left: auto;
+margin-right: auto;
+margin-top: 3vh;
+font-size: 24px;
+justify-content: center;
+text-align: center;
+/* margin-bottom: 10px; */
+font-weight: 450; /* or use 700 for a bolder effect */
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.text:focus {
+border-color: #007bff;
+box-shadow: 0 0 12px rgba(0, 123, 255, 0.5);
+background: #fff;
 }
 
 .button {
-    background-color: transparent;
-    color: #2196F3; /* Equivalent to Tailwind blue-700 */
-    font-weight: 600; /* Equivalent to Tailwind font-semibold */
-    padding: 0.5rem 0.8rem; /* Equivalent to Tailwind py-2 px-4 */
-    border: 1px solid #2196F3; /* Equivalent to Tailwind border-blue-500 */
-    border-radius: 0.25rem; /* Equivalent to Tailwind rounded */
-    margin: 1rem;
-  }
-  
-  .button:hover {
-    background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
-    color: #ffffff; /* Equivalent to Tailwind hover:text-white */
-    border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
-  }
+  background-color: transparent;
+  color: #2196F3; /* Equivalent to Tailwind blue-700 */
+  font-weight: 600; /* Equivalent to Tailwind font-semibold */
+  padding: 0.5rem 0.8rem; /* Equivalent to Tailwind py-2 px-4 */
+  border: 1px solid #2196F3; /* Equivalent to Tailwind border-blue-500 */
+  border-radius: 0.25rem; /* Equivalent to Tailwind rounded */
+  margin: 1rem;
+}
 
-  .summary{
-    color: white;
-    align-content: center;
-    margin-bottom: 2rem;
-    margin-top: 2rem;
-    margin-left: auto;
-    margin-right: auto;
-    width: 70%
-  }
+.button:hover {
+  background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
+  color: #ffffff; /* Equivalent to Tailwind hover:text-white */
+  border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
+}
 
-  .select{
-    background-color: #333333;
-    margin-left: 1rem;
-    color: #2196F3;
-    border-color: #2196F3;
-    border: 1px solid #2196F3;
-    padding: 0.5rem 1rem;
-  }
+.summary{
+  color: white;
+  align-content: center;
+  margin-bottom: 2rem;
+  margin-top: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%
+}
+
+.select{
+  background-color: #2196F3;
+  margin: 1rem;
+  color: #ffffff;
+  border-color: #2196F3;
+  border: 1px solid #2196F3;
+  padding: 0.5rem 1rem;
+}
+
+.nerButton{
+  background-color: #333333;
+  margin: 1rem;
+  color: #2196F3;
+  border-color: #2196F3;
+  border: 1px solid #2196F3;
+  padding: 0.5rem 1rem;
+}
+
+.activeNerButton{
+  background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
+  color: #ffffff; /* Equivalent to Tailwind hover:text-white */
+  border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
+  margin: 1rem;
+  border: 1px solid #2196F3;
+  padding: 0.5rem 1rem;
+}
+
+.nerButton:hover{
+  background-color: #2196F3; /* Equivalent to Tailwind hover:bg-blue-500 */
+  color: #ffffff; /* Equivalent to Tailwind hover:text-white */
+  border-color: transparent; /* Equivalent to Tailwind hover:border-transparent */
+}
+
+.buttonsContainer{
+  display: flex;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 6rem;
+  align-content: center;
+  justify-content: center;
+}
+
+.sumContainer{
+  color: #ffffff; /* White text */
+  background-color: #4d4d4d;
+  border-radius: 8px;
+  border-color: #2196F3;
+  border-width: 2px;;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  padding: 1.5rem;
+  margin: 0px auto;
+  width: 70%;
+}
+
+.hiddenSumContainer{
+  display: none;
+}
