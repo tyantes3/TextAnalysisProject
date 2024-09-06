@@ -4,6 +4,7 @@ import requests
 from bs4 import BeautifulSoup
 import PyPDF2
 import io
+import torch
 # import en_core_web_sm
 import spacy
 from spacy import displacy

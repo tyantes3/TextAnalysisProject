@@ -45,7 +45,7 @@ export default function InputText() {
     });
 
     try {
-      const response = await fetch("http://127.0.0.1:5000/api/queryModel", {
+      const response = await fetch("https://textanalysisproject.onrender.com//api/queryModel", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -159,7 +159,6 @@ export default function InputText() {
       <div className={speechStyles.Speech}>
         <p className={speechStyles.Mic}>
           Microphone:{" "}
-          {listening ? "Currently Listening" : "Currently Not Listening"}
         </p>
         <button
           className={speechStyles.button}
