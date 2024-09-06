@@ -5,7 +5,6 @@ from flask import Flask, flash, redirect, render_template, request, session, abo
 from flask_cors import CORS, cross_origin
 from model_api import *
 import json
-import os
 
 
 app = Flask(__name__)
@@ -46,5 +45,4 @@ def queryModel():
 
 
 if __name__ == "__main__":
-  port = int(os.getenv('PORT', 5000))  # Use PORT environment variable or default to 5000
-  app.run(host='0.0.0.0', port=3715)
+  app.run(host="localhost", port=5000)
