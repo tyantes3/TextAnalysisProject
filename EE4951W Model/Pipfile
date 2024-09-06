@@ -14,7 +14,7 @@ pypdf2 = "*"
 spacy = "*"
 ipython = "*"
 gunicorn = "*"
-torch = "*"
+torch = {version = "*", extras = ["cpu"]}
 
 [dev-packages]
 
