@@ -77,16 +77,16 @@ export default function InputText() {
     }
   }
 
-  function handleChange(event) {
+  function handleChange(event: React.ChangeEvent<HTMLInputElement>) {
     setModelStatus(event.target.value);
   }
 
-  function handleInputChange(event) {
+  function handleInputChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setInputType(event.target.value);
     console.log(inputType);
   }
 
-  function handleModelChange(event) {
+  function handleModelChange(event: React.ChangeEvent<HTMLSelectElement>) {
     setModelType(event.target.value);
     console.log(modelType);
   }
