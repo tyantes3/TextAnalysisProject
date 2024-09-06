@@ -4,7 +4,7 @@ import styles from "./NavBar.module.css";
 const NavBar = () => {
   return (
     <div className={styles.navBar}>
-      <p className={styles.title}>Innovatice Text Analysis System</p>
+      <p className={styles.title}>Innovative Text Analysis System</p>
     </div>
   );
 };

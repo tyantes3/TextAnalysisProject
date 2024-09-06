@@ -26,7 +26,7 @@ export default function InputText() {
   const nerButtonState = NERStatus ? styles.activeNerButton : styles.nerButton;
   const summaryStatus = isSummary ? styles.sumContainer : styles.hiddenSumContainer;
 
-  async function queryModel(event) {
+  async function queryModel(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setIsSummary(true);
     setSummary("Loading...");
